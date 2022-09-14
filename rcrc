@@ -1,0 +1,2 @@
+EXCLUDES="*.md LICENSE"
+DOTFILES_DIRS="$HOME/dotfiles-local $HOME/dotfiles"

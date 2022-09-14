@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+rofi -show power-menu -modi power-menu:~/.config/polybar/rofi-power-menu \
+  -theme Paper \
+  -font "Hackgen Console NF 16" \
+  -width 20 \
+  -lines 6
