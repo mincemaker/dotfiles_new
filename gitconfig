@@ -27,3 +27,5 @@
   branch = auto
   interactive = auto
 
+[core]
+	editor = vim
