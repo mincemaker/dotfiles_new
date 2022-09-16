@@ -18,5 +18,21 @@ eval "$(starship init zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 alias ls='lsd'
-alias ll='ls -la'
+
+alias la="ls -a"
+alias lf="ls -F"
+alias ll="ls -trAlF"
 alias lt='ls --tree'
+alias l="ls -lh"
+
+alias du="du -h"
+alias df="df -h"
+
+alias su="su -l"
+alias screen="env LC_TIME=C screen -D -RR"
+alias tmux="env LC_TIME=C tmux -2 a || tmux -2"
+alias dstat-full='dstat -Tclmdrn'
+alias dstat-mem='dstat -Tclm'
+alias dstat-cpu='dstat -Tclr'
+alias dstat-net='dstat -Tclnd'
+alias dstat-disk='dstat -Tcldr'
