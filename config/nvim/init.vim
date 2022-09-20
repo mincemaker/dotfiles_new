@@ -1,5 +1,6 @@
 lua << EOF
   require 'plugins'
+  vim.cmd[[autocmd BufWritePost plugins.lua PackerCompile]]
 EOF
 
 " ------------------------------------------------------------------------------
@@ -142,7 +143,7 @@ set autoread
 " 改行コードの自動認識
 set fileformats=unix,dos,mac
 " □とか○の文字があってもカーソル位置がずれないようにする
-set ambiwidth=double
+"set ambiwidth=double
 
 " cvs,svnの時は文字コードをeuc-jpに設定
 autocmd FileType cvs :set fileencoding=euc-jp
@@ -291,4 +292,8 @@ nmap <ESC><ESC> :nohlsearch<CR><ESC>
 nnoremap <C-i>  :<C-u>help<Space>
 " カーソル下のキーワードをヘルプでひく
 nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
-
+,
+if has('win64')
+  let g:sqlite_clib_path = $HOME . "\\scoop\\apps\\neovim\\current\\bin\\sqlite3.dll"
+elseif has('unix')
+endif
