@@ -5,7 +5,26 @@ require("packer").startup(function(use)
 	use("bronson/vim-visual-star-search")
 	use("lambdalisue/fern.vim")
 	use("acro5piano/nvim-format-buffer")
-	use("neovim/nvim-lspconfig")
+	use {
+    "neovim/nvim-lspconfig",
+    config = function()
+      local lspconfig = require("lspconfig")
+
+      lspconfig.vimls.setup {
+        on_attach = require("aerial").on_attach
+      }
+      lspconfig.pyright.setup {
+        on_attach = require("aerial").on_attach
+      }
+      lspconfig.sumneko_lua.setup {
+        on_attach = require("aerial").on_attach
+      }
+      lspconfig.rust_analyzer.setup {
+        on_attach = require("aerial").on_attach
+      }
+    end
+  }
+
   use {
     'williamboman/mason.nvim',
     config = function()
@@ -31,6 +50,7 @@ require("packer").startup(function(use)
       end })
     end
   }
+
 	use {
     "hrsh7th/nvim-cmp",
     config = function()
@@ -101,18 +121,18 @@ require("packer").startup(function(use)
   use {
     'nvim-telescope/telescope.nvim',
     requires = {'nvim-lua/plenary.nvim'} ,
-      config = function()
-        vim.keymap.set('n', '<leader>ff', [[<Cmd>lua require('telescope.builtin').find_files()<CR>]], {noremap = true})
-        vim.keymap.set('n', '<leader>fg', [[<Cmd>lua require('telescope.builtin').live_grep()<CR>]], {noremap = true})
-        vim.keymap.set('n', '<leader>fb', [[<Cmd>lua require('telescope.builtin').buffers()<CR>]], {noremap = true})
-        vim.keymap.set('n', '<leader>fh', [[<Cmd>lua require('telescope.builtin').help_tags()<CR>]], {noremap = true})
-        vim.keymap.set('n', '<leader>fs', [[<Cmd>Telescope frecency<cr>]], {noremap = true})
-      end,
+    config = function()
+      vim.keymap.set('n', '<leader>ff', [[<Cmd>lua require('telescope.builtin').find_files()<CR>]], {noremap = true})
+      vim.keymap.set('n', '<leader>fg', [[<Cmd>lua require('telescope.builtin').live_grep()<CR>]], {noremap = true})
+      vim.keymap.set('n', '<leader>fb', [[<Cmd>lua require('telescope.builtin').buffers()<CR>]], {noremap = true})
+      vim.keymap.set('n', '<leader>fh', [[<Cmd>lua require('telescope.builtin').help_tags()<CR>]], {noremap = true})
+      vim.keymap.set('n', '<leader>fs', [[<Cmd>Telescope frecency<cr>]], {noremap = true})
+    end,
   }
   use("kyazdani42/nvim-web-devicons")
   use("nvim-treesitter/nvim-treesitter")
   use("yioneko/nvim-yati")
-  use { "kkharji/sqlite.lua" }
+  use("kkharji/sqlite.lua")
 
   use {
     "nvim-telescope/telescope-packer.nvim",
@@ -179,17 +199,10 @@ require("packer").startup(function(use)
       requires = "neovim/nvim-lspconfig",
       config = function()
         local navic = require("nvim-navic")
-
         require("lspconfig").clangd.setup {
-            on_attach = function(client, bufnr)
-                navic.attach(client, bufnr)
-            end
-        }
-        require("lspconfig").vimls.setup {
-          on_attach = require("aerial").on_attach,
-        }
-        require("lspconfig").pyright.setup {
-          on_attach = require("aerial").on_attach,
+          on_attach = function(client, bufnr)
+            navic.attach(client, bufnr)
+          end
         }
       end
   }
