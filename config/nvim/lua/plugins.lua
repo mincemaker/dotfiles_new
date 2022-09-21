@@ -9,16 +9,16 @@ require("packer").startup(function(use)
 		config = function()
 			require("nvim-format-buffer").setup({
 				format_rules = {
-					{ pattern = { "*.lua" }, command = "stylua -" },
-					{ pattern = { "*.py" }, command = "black -q - | isort -" },
+					{ pattern = { "*.lua" }, command = "stylua -" }, -- cargo install stylua
+					{ pattern = { "*.py" }, command = "black -q - | isort -" }, -- pip install black
 					{
 						pattern = { "*.js", "*.jsx", "*.ts", "*.tsx" },
-						command = "prettier --parser typescript 2>/dev/null",
+						command = "prettier --parser typescript 2>/dev/null", -- npm -g i prettier
 					},
 					{ pattern = { "*.md" }, command = "prettier --parser markdown 2>/dev/null" },
 					{ pattern = { "*.css" }, command = "prettier --parser css" },
-					{ pattern = { "*.rs" }, command = "rustfmt --edition 2021" },
-					{ pattern = { "*.sql" }, command = "sql-formatter --config ~/sql-formatter.json" }, -- requires `npm -g i sql-formatter`
+					{ pattern = { "*.rs" }, command = "rustfmt --edition 2021" }, -- rustup component add rustfmt
+					{ pattern = { "*.sql" }, command = "sql-formatter --config ~/sql-formatter.json" }, -- npm -g i sql-formatter
 				},
 			})
 		end,
