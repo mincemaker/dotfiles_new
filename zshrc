@@ -14,6 +14,7 @@ SAVEHIST=100000
 source "$HOME/.cargo/env"
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
+PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
