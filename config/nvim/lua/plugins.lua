@@ -24,7 +24,7 @@ require("packer").startup(function(use)
 		end,
 	})
 
---[[ 	use({
+	--[[ 	use({
 		"neovim/nvim-lspconfig",
 		config = function()
 			local lspconfig = require("lspconfig")
@@ -108,11 +108,21 @@ require("packer").startup(function(use)
 	use("dcampos/nvim-snippy")
 	use("dcampos/cmp-snippy")
 	use("rcarriga/nvim-notify")
-	use({ "kevinhwang91/nvim-hlslens" })
+	use({
+		"kevinhwang91/nvim-hlslens",
+		config = function()
+			require("hlslens").setup({
+				calm_down = true,
+				nearest_only = true,
+				nearest_float_when = "always",
+			})
+		end,
+	})
 	use({ "akinsho/bufferline.nvim", tag = "v2.*", requires = "kyazdani42/nvim-web-devicons" })
 	use("myusuf3/numbers.vim")
 	use({
 		"j-hui/fidget.nvim",
+		tag = "legacy",
 		config = function()
 			require("fidget").setup({})
 		end,
@@ -120,22 +130,7 @@ require("packer").startup(function(use)
 	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
-			vim.opt.termguicolors = true
-			vim.cmd([[highlight IndentBlanklineIndent1 guibg=#1f1f1f gui=nocombine]])
-			vim.cmd([[highlight IndentBlanklineIndent2 guibg=#1a1a1a gui=nocombine]])
-
-			require("indent_blankline").setup({
-				char = "",
-				char_highlight_list = {
-					"IndentBlanklineIndent1",
-					"IndentBlanklineIndent2",
-				},
-				space_char_highlight_list = {
-					"IndentBlanklineIndent1",
-					"IndentBlanklineIndent2",
-				},
-				show_trailing_blankline_indent = false,
-			})
+			require("ibl").setup()
 		end,
 	})
 
