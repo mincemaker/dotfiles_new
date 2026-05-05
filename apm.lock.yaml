@@ -1,0 +1,11 @@
+lockfile_version: '1'
+generated_at: '2026-05-05T03:52:04.913944+00:00'
+apm_version: 0.12.0
+dependencies:
+- repo_url: _local/chezmoi-sync
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/chezmoi-sync
+  - .claude/skills/chezmoi-sync
+  source: local
+  local_path: ./skills/chezmoi-sync

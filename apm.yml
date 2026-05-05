@@ -1,0 +1,11 @@
+name: dotfiles_new
+version: 1.0.0
+description: APM project for dotfiles_new
+author: mincemaker
+dependencies:
+  apm:
+    - path: ./skills/chezmoi-sync
+  mcp: []
+includes: auto
+target: ["claude", "agent-skills"]
+scripts: {}
