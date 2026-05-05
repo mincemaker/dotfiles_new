@@ -1,0 +1,7 @@
+
+# APM dependencies
+apm_modules/
+.claude/skills/
+.agents/
+.gemini/
+skills/**/evals/
