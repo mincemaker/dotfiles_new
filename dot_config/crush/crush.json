@@ -1,0 +1,56 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "mcp": {
+    "context7": {
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "$CONTEXT7_API_KEY"
+      }
+    },
+    "serena": {
+      "type": "stdio",
+      "command": "serena",
+      "args": ["start-mcp-server", "--context=ide", "--enable-web-dashboard=false"]
+    }
+  },
+  "lsp": {
+    "nix": {
+      "command": "nil"
+    },
+    "typescript": {
+      "command": "typescript-language-server",
+      "args": ["--stdio"]
+    },
+    "python": {
+      "command": "pyright-langserver",
+      "args": ["--stdio"]
+    },
+    "rust": {
+      "command": "rust-analyzer"
+    },
+    "go": {
+      "command": "gopls"
+    },
+    "ruby": {
+      "command": "ruby-lsp"
+    }
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "^bash$",
+        "command": "hooks/rtk-rewrite.sh"
+      }
+    ]
+  },
+  "options": {
+    "auto_lsp": true,
+    "debug": false,
+    "attribution": {
+      "trailer_style": "assisted-by",
+      "generated_with": true
+    }
+  },
+  "permissions": {}
+}
