@@ -24,7 +24,8 @@ palette = 12=#7aa2f7
 palette = 13=#bb9af7
 palette = 14=#7dcfff
 palette = 15=#c0caf5
-font-family = MoralerspaceKryptonHW-Regular
+font-family = Moralerspace Krypton HW
+font-size = 16
 keybind = ctrl+i=text:\t
 keybind = ctrl+j=ignore
 keybind = ctrl+m=text:\r
