@@ -11,7 +11,11 @@
     "serena": {
       "type": "stdio",
       "command": "serena",
-      "args": ["start-mcp-server", "--context=ide", "--enable-web-dashboard=false"]
+      "args": [
+        "start-mcp-server",
+        "--context=ide",
+        "--enable-web-dashboard=false"
+      ]
     }
   },
   "lsp": {
@@ -20,11 +24,19 @@
     },
     "typescript": {
       "command": "typescript-language-server",
-      "args": ["--stdio"]
+      "args": [
+        "--stdio"
+      ],
+      "root_markers": [
+        "tsconfig.json",
+        "package.json"
+      ]
     },
     "python": {
       "command": "pyright-langserver",
-      "args": ["--stdio"]
+      "args": [
+        "--stdio"
+      ]
     },
     "rust": {
       "command": "rust-analyzer"
@@ -45,12 +57,29 @@
     ]
   },
   "options": {
+    "skills_paths": [
+      "~/.claude/skills"
+    ],
     "auto_lsp": true,
     "debug": false,
+    "tui": {
+      "diff_mode": "unified"
+    },
     "attribution": {
       "trailer_style": "assisted-by",
       "generated_with": true
     }
   },
-  "permissions": {}
+  "permissions": {
+    "allowed_tools": [
+      "view",
+      "ls",
+      "glob",
+      "grep",
+      "lsp_diagnostics",
+      "lsp_references",
+      "fetch",
+      "agent"
+    ]
+  }
 }
