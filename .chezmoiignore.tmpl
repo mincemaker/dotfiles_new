@@ -1,35 +1,35 @@
-{{- if eq .chezmoi.hostname "cachyos-x8664" -}}
+{{- if or (eq .chezmoi.hostname "cachyos-x8664") (eq .chezmoi.hostname "macbook-air-m4") }}
+  .config/fish/
+  .config/nvim/
+  .config/polybar/
+  .config/ranger/
+  .config/starship.toml
+  .gitconfig
+{{- end }}
+
+{{- if eq .chezmoi.hostname "cachyos-x8664" }}
   .config/aerospace/
   .config/borders/
   .config/bottom/
-  .config/fish/
-  .config/nvim/
-  .config/polybar/
   .config/sketchybar/
-  .config/starship.toml
-  .config/ranger/
-  .gitconfig
   .tmux.conf
 {{- end }}
-{{- if eq .chezmoi.hostname "macbook-air-m4" -}}
-  .config/fish/
-  .config/nvim/
-  .config/polybar/
-  .config/ranger/
-  .config/starship.toml
-  .gitconfig
+
+{{- if eq .chezmoi.hostname "macbook-air-m4" }}
   .local/share/easyeffects/
 {{- end }}
+
+{{- if hasPrefix .chezmoi.hostname "proxmox-" }}
+  # TODO: 必要に応じて個別ファイルを許可
+  *
+{{- end }}
+
 mise.toml
 AGENTS.md
 GEMINI.md
 README.md
 apm.lock.yaml
-apm.yml
+apm.yml*
 apm_modules/
-mise.toml
 skills
 .zshrc
-apm.yml*
-skills/*
-
