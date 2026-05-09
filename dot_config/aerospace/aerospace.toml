@@ -77,7 +77,7 @@ on-mode-changed = []
     inner.horizontal = 10
     inner.vertical =   10
     outer.left =       15
-    outer.bottom =     15
+    outer.bottom =     10
     outer.top =        [{monitor.VG279QM = 43}, {monitor.airplay = 43}, 15]
 
 # 'main' binding mode declaration
