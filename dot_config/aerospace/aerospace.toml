@@ -228,6 +228,9 @@ on-mode-changed = []
     alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
+    # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
+    cmd-shift-m = 'exec-and-forget ~/.config/sketchybar/plugins/toggle_bar.sh'
+
     alt-shift-semicolon = 'mode service'
 
 # 'service' binding mode declaration.
