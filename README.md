@@ -1,9 +1,9 @@
 # Usage
 
-このリポジトリは home-manager 管理下のPCでは apply しない。
-chezmoi のソースディレクトリとして参照するだけ。
+`.chezmoiignore.tmpl` でマシンごとに適用対象を調整している。
 
 ```sh
-chezmoi init --source <dotfiles-dir>
-chezmoi status  # 確認のみ、apply は実行しない
+chezmoi status
+chezmoi apply --dry-run
+chezmoi apply
 ```
