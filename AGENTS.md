@@ -20,7 +20,7 @@ dot_gitconfig  → ~/.gitconfig
 
 ## Key config details
 
-- **tmux**: prefix is `C-z` (not `C-b`), vi copy mode, OSC52 clipboard.
+- **tmux**: prefix is `C-z` (`C-b` is prefix2), vi copy mode, OSC52 clipboard. `prefix+T` launches sesh session picker (fzf-tmux) when sesh is on PATH.
 - **zsh**: starship prompt, fzf integration, emacs key bindings.
 - **fish**: CachyOS aliases (`eza`-based listings, pacman helpers), depot_tools PATH.
 - **git**: user = mincemaker, editor = vim.
