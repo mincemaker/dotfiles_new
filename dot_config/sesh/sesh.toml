@@ -25,7 +25,7 @@ dir_length = 2
 show_icons = true
 
 [default_session]
-startup_command = "la"
+startup_command = "nvim -c 'lua Snacks.picker.files()'"
 startup_command_ignore_dirs = ["${DEVELOPMENT_DIR:-~/development}", "~/.config"]
 preview_command = "eza --all --git --icons --color=always {}"
 
