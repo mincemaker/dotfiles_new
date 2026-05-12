@@ -51,6 +51,10 @@
   "hooks": {
     "PreToolUse": [
       {
+        "matcher": "",
+        "command": "hooks/guard-and-guide.sh"
+      },
+      {
         "matcher": "^bash$",
         "command": "hooks/rtk-rewrite.sh"
       }
