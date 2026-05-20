@@ -254,10 +254,8 @@ on-mode-changed = []
     alt-shift-l = ['join-with right', 'mode main']
 
 [workspace-to-monitor-force-assignment]
-    A = 'secondary'
-    B = 'secondary'
-    C = 'secondary'
-    D = 'secondary'
-    F = 'secondary'
-    S = 'secondary'
+    1 = 'secondary'
+    2 = 'secondary'
+    3 = 'secondary'
+    4 = 'secondary'
 
