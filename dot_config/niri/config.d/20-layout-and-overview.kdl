@@ -9,7 +9,7 @@
 
 layout {
     // Gap between windows and from windows to screen edges (logical px).
-    gaps 25
+    gaps 10
 
     // Transparent so iNiR's own wallpaper/backdrop shows through.
     background-color "transparent"
@@ -89,10 +89,10 @@ layout {
     // Left/right struts keep the next column partially visible.
     // iNiR's bar uses layer-shell, so struts are usually not needed.
     struts {
-        // left 64
-        // right 64
-        // top 64
-        // bottom 64
+        left 15
+        right 15
+        top 0
+        bottom 5
     }
 }
 
