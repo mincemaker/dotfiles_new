@@ -1,0 +1,183 @@
+/- output "DP-1" {
+    mode "2560x1440@359.979"
+    scale 1
+}
+
+output "DP-1" {
+    position x=0 y=0
+    mode "3440x1440@179.989"
+}
+
+output "DP-2" {
+    position x=3440 y=0
+    mode "1920x1080@239.760"
+    focus-at-startup
+}
+
+output "HDMI-A-1" {
+    position x=5360 y=0
+    mode "640x480@60"
+}
+
+input {
+    focus-follows-mouse
+}
+
+// クリップボードのみ、ファイル保存なし
+screenshot-path null
+
+// Firefox 透明化
+window-rule {
+    match app-id=r#"firefox$"#
+    opacity 0.8
+    draw-border-with-background false
+}
+
+// ウィンドウ開閉 ink-splash シェーダー
+animations {
+    window-open {
+        duration-ms 1500
+        curve "ease-out-cubic"
+        custom-shader r"
+          float is_hash(vec2 p) {
+              return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+          }
+          float is_noise(vec2 p) {
+              vec2 i = floor(p);
+              vec2 f = fract(p);
+              f = f * f * (3.0 - 2.0 * f);
+              return mix(mix(is_hash(i), is_hash(i + vec2(1.0, 0.0)), f.x),
+                         mix(is_hash(i + vec2(0.0, 1.0)), is_hash(i + vec2(1.0, 1.0)), f.x), f.y);
+          }
+          float is_fbm(vec2 p) {
+              float v = 0.0;
+              float amp = 0.5;
+              for (int i = 0; i < 5; i++) {
+                  v += amp * is_noise(p);
+                  p *= 2.1;
+                  amp *= 0.5;
+              }
+              return v;
+          }
+          vec4 open_color(vec3 coords_geo, vec3 size_geo) {
+              float p = niri_clamped_progress;
+              vec2 uv = coords_geo.xy;
+              vec3 tc = niri_geo_to_tex * vec3(uv, 1.0);
+              vec4 win = texture2D(niri_tex, tc.st);
+              float blob = is_fbm(uv * 3.5);
+              float fingers = is_fbm(uv * 14.0);
+              float distortion = (blob - 0.5) * 0.5 + (fingers - 0.5) * 0.18;
+              vec2 c = uv - vec2(0.5);
+              c.x *= size_geo.x / max(size_geo.y, 0.0001);
+              float d = length(c);
+              float splash_d = d + distortion;
+              float boundary = p * 1.7 - 0.15;
+              float diff = splash_d - boundary;
+              float reveal = smoothstep(0.04, -0.04, diff);
+              return win * reveal;
+          }
+        "
+    }
+    window-close {
+        duration-ms 1500
+        curve "ease-out-cubic"
+        custom-shader r"
+          float is_hash(vec2 p) {
+              return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+          }
+          float is_noise(vec2 p) {
+              vec2 i = floor(p);
+              vec2 f = fract(p);
+              f = f * f * (3.0 - 2.0 * f);
+              return mix(mix(is_hash(i), is_hash(i + vec2(1.0, 0.0)), f.x),
+                         mix(is_hash(i + vec2(0.0, 1.0)), is_hash(i + vec2(1.0, 1.0)), f.x), f.y);
+          }
+          float is_fbm(vec2 p) {
+              float v = 0.0;
+              float amp = 0.5;
+              for (int i = 0; i < 5; i++) {
+                  v += amp * is_noise(p);
+                  p *= 2.1;
+                  amp *= 0.5;
+              }
+              return v;
+          }
+          vec4 close_color(vec3 coords_geo, vec3 size_geo) {
+              float p = 1.0 - niri_clamped_progress;
+              vec2 uv = coords_geo.xy;
+              vec3 tc = niri_geo_to_tex * vec3(uv, 1.0);
+              vec4 win = texture2D(niri_tex, tc.st);
+              float blob = is_fbm(uv * 3.5);
+              float fingers = is_fbm(uv * 14.0);
+              float distortion = (blob - 0.5) * 0.5 + (fingers - 0.5) * 0.18;
+              vec2 c = uv - vec2(0.5);
+              c.x *= size_geo.x / max(size_geo.y, 0.0001);
+              float d = length(c);
+              float splash_d = d + distortion;
+              float boundary = p * 1.7 - 0.15;
+              float diff = splash_d - boundary;
+              float reveal = smoothstep(0.04, -0.04, diff);
+              return win * reveal;
+          }
+        "
+    }
+}
+
+binds {
+    // Wheel: column navigation (Shift+wheel = horizontal scroll)
+    Shift+WheelScrollDown  cooldown-ms=50 { focus-column-right; }
+    Shift+WheelScrollUp    cooldown-ms=50 { focus-column-left; }
+
+    // Wheel: move column left/right
+    Mod+Ctrl+WheelScrollRight { move-column-right; }
+    Mod+Ctrl+WheelScrollLeft  { move-column-left; }
+
+    // Wheel: Mod+Shift = column nav
+    Mod+Shift+WheelScrollDown { focus-column-right; }
+    Mod+Shift+WheelScrollUp   { focus-column-left; }
+
+    // Wheel: Mod+Ctrl+Shift = move column
+    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+    Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+
+    // Overview
+    Mod+O repeat=false { toggle-overview; }
+
+    // Preset column width (Mod+M, in addition to Mod+R)
+    Mod+M { switch-preset-column-width; }
+
+    // Screenshots (Ctrl+Shift variants)
+    Ctrl+Shift+1 { screenshot; }
+    Ctrl+Shift+2 { screenshot-screen; }
+    Ctrl+Shift+3 { screenshot-window; }
+
+    // Quit
+    Ctrl+Alt+Delete { quit; }
+
+    // App launchers
+    Alt+Space { spawn "rofi" "-show" "drun" "-terminal" "alacritty"; }
+    Mod+B { spawn "firefox"; }
+
+    // Mod+H/L: 端で隣モニターへ移動（70-binds.kdl の focus-column-left/right を上書き）
+    Mod+H { focus-column-or-monitor-left; }
+    Mod+L { focus-column-or-monitor-right; }
+
+    // Move column/window — vim keys (arrows handled by 70-binds.kdl)
+    Mod+Ctrl+H { move-column-left; }
+    Mod+Ctrl+L { move-column-right; }
+    Mod+Ctrl+K { move-window-up; }
+    Mod+Ctrl+J { move-window-down; }
+
+    // Move column to monitor — vim keys
+    Mod+Shift+Ctrl+H { move-column-to-monitor-left; }
+    Mod+Shift+Ctrl+L { move-column-to-monitor-right; }
+    Mod+Shift+Ctrl+K { move-column-to-monitor-up; }
+    Mod+Shift+Ctrl+J { move-column-to-monitor-down; }
+
+    // Column layout extras
+    Mod+Ctrl+F { expand-column-to-available-width; }
+    Mod+Ctrl+C { center-visible-columns; }
+
+    // Hotkey overlay
+    Mod+Shift+Slash { show-hotkey-overlay; }
+}
