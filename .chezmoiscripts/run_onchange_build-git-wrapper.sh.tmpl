@@ -1,0 +1,5 @@
+#!/bin/sh
+{{- if eq .chezmoi.os "linux" }}
+# source: {{ include "dot_local/src/git-wrapper.c" | sha256sum }}
+gcc -O2 -o "$HOME/.local/bin/git" "{{ .chezmoi.sourceDir }}/dot_local/src/git-wrapper.c"
+{{- end }}
