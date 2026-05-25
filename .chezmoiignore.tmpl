@@ -17,9 +17,11 @@
 {{- end }}
 
 {{- if eq .chezmoi.hostname "macbook-air-m4" }}
-  .local/share/easyeffects/
   .config/niri/
+  .local/share/easyeffects/
   .local/bin/git
+  .local/src
+  .chezmoiscripts/build-git-wrapper.sh
 {{- end }}
 
 {{- if hasPrefix .chezmoi.hostname "proxmox-" }}
