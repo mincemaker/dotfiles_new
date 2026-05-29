@@ -29,6 +29,12 @@ hotkey-overlay {
     skip-at-startup
 }
 
+// Honor activation tokens even with invalid serials — lets apps like VS Code,
+// Firefox, etc. steal focus when another app requests it (e.g. Nautilus open-with).
+debug {
+    honor-xdg-activation-with-invalid-serial
+}
+
 // Where native Niri screenshots land (Print key).
 // iNiR's region selector (Mod+Shift+S) uses its own path.
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
