@@ -1,3 +1,5 @@
+spawn-at-startup "gpgconf" "--kill" "gpg-agent"
+
 /- output "DP-1" {
     mode "2560x1440@359.979"
     scale 1
