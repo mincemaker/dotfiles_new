@@ -23,7 +23,7 @@ bar=(
   padding_right=8
   margin=8
   corner_radius=12
-  blur_radius=30
+  blur_radius=0
   notch_width=200
   display=all
 )
