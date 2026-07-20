@@ -29,6 +29,7 @@ hunkdiff = { version = "latest", postinstall = '''
 mkdir -p ~/.claude/skills
 ln -sfn "$(dirname "$(hunk skill path)")" ~/.claude/skills/hunk-review
 ''' }
+herdr = "latest"
 
 [settings.pipx]
 uvx = true
