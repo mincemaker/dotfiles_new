@@ -1,0 +1,41 @@
+[tools]
+fastfetch = "latest"
+gemini-cli = "latest"
+node = "latest"
+"npm:@mizchi/readability" = "latest"
+python = "3.14"
+yazi = "latest"
+"github:trasta298/keifu" = "latest"
+"github:k1Low/mo" = "latest"
+"github:rtk-ai/rtk" = "latest"
+"pipx:apm-cli" = "latest"
+"npm:agent-browser" = "latest"
+deno = "latest"
+opencode = "latest"
+chezmoi = "latest"
+crush = "latest"
+"npm:typescript-language-server" = "latest"
+"npm:pyright" = "latest"
+go = "latest"
+rust-analyzer = "latest"
+"go:golang.org/x/tools/gopls" = "latest"
+ruby = "4.0.5"
+"gem:ruby-lsp" = "latest"
+"go:golang.org/x/tools/cmd/goimports" = "latest"
+pi = "latest"
+"npm:defuddle" = "latest"
+lazydocker = "latest"
+hunkdiff = { version = "latest", postinstall = '''
+mkdir -p ~/.claude/skills
+ln -sfn "$(dirname "$(hunk skill path)")" ~/.claude/skills/hunk-review
+''' }
+
+[settings.pipx]
+uvx = true
+
+[settings.ruby]
+compile = false
+
+[env]
+_.file = '~/.config/mise/.env'
+
