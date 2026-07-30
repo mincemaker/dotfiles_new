@@ -84,6 +84,65 @@ sketchybar --add item chevron left \
            --set front_app icon.drawing=off script="$PLUGIN_DIR/front_app.sh" \
            --subscribe front_app front_app_switched
 
+##### Adding the Now Playing Item #####
+# The built-in media_change event is dead since macOS 15.4 locked MediaRemote,
+# so this item is driven by plugins/media_listener.sh instead.
+#
+# Everything below needs media-control, which is not part of a stock macOS. Say
+# so in the bar rather than leaving an item that silently never appears — this
+# is the one dependency the config cannot satisfy on its own.
+
+if command -v media-control > /dev/null 2>&1; then
+  HAS_MEDIA_CONTROL=1
+else
+  HAS_MEDIA_CONTROL=0
+fi
+
+if [ "$HAS_MEDIA_CONTROL" -eq 0 ]; then
+  # Clicking copies the install command, so it can go straight into a terminal.
+  sketchybar --add item media left \
+             --set media icon=󰏔 \
+                         icon.color=0xffffcc66 \
+                         label="brew install media-control" \
+                         label.color=0xffffcc66 \
+                         click_script="printf 'brew install media-control' | pbcopy"
+else
+
+sketchybar --add event media_change_custom
+
+sketchybar --add item media left \
+           --set media script="$PLUGIN_DIR/media.sh" \
+                       label.max_chars=35 \
+                       drawing=off \
+                       click_script="media-control toggle-play-pause" \
+                       popup.background.color=0xcc1e1e2e \
+                       popup.background.corner_radius=8 \
+                       popup.background.border_width=1 \
+                       popup.background.border_color=0x44ffffff \
+                       popup.background.shadow.drawing=on \
+                       popup.align=left \
+                       popup.y_offset=2 \
+                       popup.height=26 \
+           --subscribe media media_change_custom mouse.entered mouse.exited.global
+
+# Popup contents, drawn top to bottom in this order.
+sketchybar --add item media.artwork popup.media \
+           --set media.artwork icon.drawing=off label.drawing=off \
+                               background.drawing=on \
+                               background.image.drawing=off \
+                               background.image.scale=1.0 \
+                               click_script="media-control toggle-play-pause" \
+           --add item media.title popup.media \
+           --set media.title label.max_chars=28 \
+           --add item media.artist popup.media \
+           --set media.artist icon.drawing=off label.max_chars=28 \
+                              label.color=0xccffffff \
+           --add item media.album popup.media \
+           --set media.album icon.drawing=off label.max_chars=28 \
+                             label.color=0x88ffffff
+
+fi
+
 ##### Adding Right Items #####
 # In the same way as the left items we can add items to the right side.
 # Additional position (e.g. center) are available, see:
@@ -112,6 +171,14 @@ sketchybar --add item clock right \
            --subscribe battery system_woke power_source_change \
            --add item network right \
            --set network update_freq=2 icon.drawing=off script="$PLUGIN_DIR/network.sh"
+
+##### Start the now playing listeners in the background #####
+# Two separate streams: artwork arrives on its own event, well after the title,
+# so it needs a listener that keeps watching rather than a one-shot fetch.
+if [ "$HAS_MEDIA_CONTROL" -eq 1 ]; then
+  "$PLUGIN_DIR/media_listener.sh" > /dev/null 2>&1 &
+  "$PLUGIN_DIR/media_artwork_listener.sh" > /dev/null 2>&1 &
+fi
 
 ##### Force all scripts to run the first time (never do this in a script) #####
 sketchybar --update
