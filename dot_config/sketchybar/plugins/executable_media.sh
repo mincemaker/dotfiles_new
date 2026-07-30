@@ -2,19 +2,43 @@
 
 # The artwork row of the popup is not handled here — see media_artwork_listener.sh.
 
+POPUP_ITEM="media"
+POPUP_CLOSE_DELAY=0.5
+CLOSE_TOKEN="/tmp/sketchybar_media_popup_close"
+
+# The popup rows share this script so that hovering them keeps the popup open.
+# Everything below the case only concerns the bar item itself.
 case "$SENDER" in
   mouse.entered)
-    sketchybar --set "$NAME" popup.drawing=on
+    # Cancels a pending close. Crossing from the bar item into the popup, and
+    # moving between popup rows, both fire an exit immediately before this.
+    rm -f "$CLOSE_TOKEN"
+    sketchybar --set "$POPUP_ITEM" popup.drawing=on
     exit 0
     ;;
-  # Only the global variant closes the popup. Plain mouse.exited fires the
-  # moment the cursor leaves the bar item for the popup below it, which would
-  # make the popup impossible to reach.
-  mouse.exited.global)
-    sketchybar --set "$NAME" popup.drawing=off
+  # Close after a grace period rather than at once. Closing the instant the
+  # cursor leaves is jarring, and the cursor has to cross the gap between the
+  # bar item and the popup to reach it at all.
+  #
+  # mouse.exited.global does not fire when the cursor leaves the popup downwards
+  # on the same display, so it cannot carry this on its own; it is kept because
+  # it does fire when crossing between displays, which mouse.exited can miss.
+  mouse.exited|mouse.exited.global)
+    printf '%s' "$$" > "$CLOSE_TOKEN"
+    (
+      sleep "$POPUP_CLOSE_DELAY"
+      # Bail out if an enter cancelled this, or a later exit superseded it.
+      # $$ stays the parent script's pid inside a subshell, so it still
+      # identifies the invocation that armed this close.
+      [ "$(cat "$CLOSE_TOKEN" 2>/dev/null)" = "$$" ] || exit 0
+      rm -f "$CLOSE_TOKEN"
+      sketchybar --set "$POPUP_ITEM" popup.drawing=off
+    ) > /dev/null 2>&1 &
     exit 0
     ;;
 esac
+
+[ "$NAME" = "$POPUP_ITEM" ] || exit 0
 
 # The media_change_custom event is triggered by plugins/media_listener.sh, which
 # passes the now playing state in as environment variables.

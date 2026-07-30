@@ -123,23 +123,32 @@ sketchybar --add item media left \
                        popup.align=left \
                        popup.y_offset=2 \
                        popup.height=26 \
-           --subscribe media media_change_custom mouse.entered mouse.exited.global
+           --subscribe media media_change_custom mouse.entered mouse.exited mouse.exited.global
 
-# Popup contents, drawn top to bottom in this order.
+# Popup contents, drawn top to bottom in this order. Each row runs media.sh on
+# hover purely so that being inside the popup cancels the pending close — see
+# the mouse handling at the top of that script.
 sketchybar --add item media.artwork popup.media \
            --set media.artwork icon.drawing=off label.drawing=off \
                                background.drawing=on \
                                background.image.drawing=off \
                                background.image.scale=1.0 \
-                               click_script="media-control toggle-play-pause" \
+                               script="$PLUGIN_DIR/media.sh" \
+           --subscribe media.artwork mouse.entered mouse.exited \
            --add item media.title popup.media \
            --set media.title label.max_chars=28 \
+                             script="$PLUGIN_DIR/media.sh" \
+           --subscribe media.title mouse.entered mouse.exited \
            --add item media.artist popup.media \
            --set media.artist icon.drawing=off label.max_chars=28 \
                               label.color=0xccffffff \
+                              script="$PLUGIN_DIR/media.sh" \
+           --subscribe media.artist mouse.entered mouse.exited \
            --add item media.album popup.media \
            --set media.album icon.drawing=off label.max_chars=28 \
-                             label.color=0x88ffffff
+                             label.color=0x88ffffff \
+                             script="$PLUGIN_DIR/media.sh" \
+           --subscribe media.album mouse.entered mouse.exited
 
 fi
 

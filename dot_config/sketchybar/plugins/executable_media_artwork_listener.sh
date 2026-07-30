@@ -14,6 +14,9 @@
 # up, however late, and a single sequential loop keeps concurrent fetches from
 # overwriting each other while the title changes rapidly.
 
+# --no-diff is deliberate: diff mode emits nothing at startup, which would leave
+# the row empty until the next track change. The fingerprint below does the
+# de-duplication that diff mode would otherwise provide.
 ARGS="stream --no-diff --debounce=1000"
 
 # Avoid stacking up listeners on config reload. The pattern must not match
@@ -23,13 +26,14 @@ pkill -f "mediaremote-adapter.*$ARGS" 2>/dev/null
 
 CACHE="/tmp/sketchybar_media_artwork.jpg"
 
-# --no-diff is deliberate: diff mode emits nothing at startup, which would leave
-# the row empty until the next track change. The fingerprint below does the
-# de-duplication that diff mode would otherwise provide.
+# Fields are joined on U+001F rather than tab: tab counts as IFS whitespace, so
+# consecutive tabs would collapse and shift every field after an empty one.
 SEP=$(printf '\037')
 
+LAST=""
+
 # shellcheck disable=SC2086
-media-control $ARGS 2>/dev/null \
+media-control $ARGS \
   | jq -r --unbuffered '.payload as $p
       | [(($p.artworkData // "") | length | tostring) + ":" + ($p.title // ""),
          ($p.artworkData // "")]
