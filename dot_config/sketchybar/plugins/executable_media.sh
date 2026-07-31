@@ -74,7 +74,7 @@ fi
 
 # Safari reports com.apple.WebKit.GPU as its bundle id, so prefer the parent.
 case "${PARENT:-$APP}" in
-  com.spotify.client) APP_ICON=""
+  com.spotify.client) APP_ICON="󰓇"
   ;;
   com.apple.Music) APP_ICON="󰝚"
   ;;
