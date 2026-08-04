@@ -25,10 +25,6 @@ ruby = "4.0.5"
 pi = "latest"
 "npm:defuddle" = "latest"
 lazydocker = "latest"
-hunkdiff = { version = "latest", postinstall = '''
-mkdir -p ~/.claude/skills
-ln -sfn "$(dirname "$(hunk skill path)")" ~/.claude/skills/hunk-review
-''' }
 herdr = "latest"
 
 [settings.pipx]
@@ -39,4 +35,3 @@ compile = false
 
 [env]
 _.file = '~/.config/mise/.env'
-
