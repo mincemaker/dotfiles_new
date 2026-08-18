@@ -16,15 +16,6 @@
         "--context=ide",
         "--enable-web-dashboard=false"
       ]
-    },
-    "raindrop": {
-      "type": "stdio",
-      "command": "npx",
-      "args": [
-        "-y",
-        "mcp-remote@0.1.37",
-        "https://api.raindrop.io/rest/v2/ai/mcp"
-      ]
     }
   },
   "lsp": {

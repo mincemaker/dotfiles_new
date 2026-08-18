@@ -1,4 +1,4 @@
-{{- if or (eq .chezmoi.hostname "cachyos-x8664") (eq .chezmoi.hostname "macbook-air-m4") }}
+{{- if or (eq .chezmoi.hostname "cachyos-x8664") (eq .chezmoi.hostname "MacBook-Air-M4") (eq .chezmoi.hostname "macbook-air-m4") }}
   .config/fish/
   .config/nvim/
   .config/polybar/
@@ -18,9 +18,9 @@
   .config/raycast/
 {{- end }}
 
-{{- if eq .chezmoi.hostname "macbook-air-m4" }}
+{{- if or (eq .chezmoi.hostname "MacBook-Air-M4") (eq .chezmoi.hostname "macbook-air-m4") }}
   .config/niri/
-  .config/rofi
+  .config/rofi/
   .local/share/easyeffects/
 {{- end }}
 
