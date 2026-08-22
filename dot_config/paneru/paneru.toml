@@ -42,15 +42,16 @@ window_swap_north = "alt + ctrl - k"
 window_swap_east  = "alt + ctrl - l"
 
 # --- 仮想ワークスペース切替: niri の Mod+1-9 相当 ---
-window_virtualnum_1 = "alt - 1"
-window_virtualnum_2 = "alt - 2"
-window_virtualnum_3 = "alt - 3"
-window_virtualnum_4 = "alt - 4"
-window_virtualnum_5 = "alt - 5"
-window_virtualnum_6 = "alt - 6"
-window_virtualnum_7 = "alt - 7"
-window_virtualnum_8 = "alt - 8"
-window_virtualnum_9 = "alt - 9"
+# alt が押しにくいため ctrl - N も併用可にしている。
+window_virtualnum_1 = ["alt - 1", "ctrl - 1"]
+window_virtualnum_2 = ["alt - 2", "ctrl - 2"]
+window_virtualnum_3 = ["alt - 3", "ctrl - 3"]
+window_virtualnum_4 = ["alt - 4", "ctrl - 4"]
+window_virtualnum_5 = ["alt - 5", "ctrl - 5"]
+window_virtualnum_6 = ["alt - 6", "ctrl - 6"]
+window_virtualnum_7 = ["alt - 7", "ctrl - 7"]
+window_virtualnum_8 = ["alt - 8", "ctrl - 8"]
+window_virtualnum_9 = ["alt - 9", "ctrl - 9"]
 
 # --- ウィンドウを別ワークスペースへ送る（フォーカスは移動しない）:
 #     niri の Mod+Ctrl+1-9 相当 ---
