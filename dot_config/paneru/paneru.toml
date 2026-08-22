@@ -11,6 +11,29 @@
 [options]
 focus_follows_mouse = true
 mouse_follows_focus = true
+# niri の center-focused-column "never" 相当（自動センタリング無効）
+auto_center = false
+# niri の preset-column-widths 相当（1/3, 1/2, 2/3）
+preset_column_widths = [0.33333, 0.5, 0.66667]
+# 同一アプリのウィンドウが勝手に macOS ネイティブタブに結合されるのを防ぐ
+disable_native_tabs = true
+# alt+shift を押しながらウィンドウ境界をドラッグしてリサイズ
+mouse_resize_modifier = "alt + shift"
+
+[swipe]
+# 端のウィンドウで停止（デスクトップの余白を露出させない）
+continuous = false
+
+[swipe.gesture]
+# トラックパッド 3本指スワイプ（横: ウィンドウ移動 / 縦: 仮想ワークスペース切替）
+fingers_count = 3
+direction = "Natural"
+vertical = true
+
+[swipe.scroll]
+# マウスホイール + 修飾キーでの横スクロール / ワークスペース切替
+modifier = "alt"
+vertical_modifier = "shift"
 
 [decorations]
 # SketchyBar 側で同じ情報を表示するため、paneru 組込みのメニューバー表示は無効化。
