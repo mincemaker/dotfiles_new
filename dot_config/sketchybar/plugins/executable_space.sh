@@ -5,10 +5,10 @@
 # https://felixkratz.github.io/SketchyBar/config/components#space----associate-mission-control-spaces-with-an-item
 
 if [ -z "$FOCUSED_WORKSPACE" ]; then
-    FOCUSED_WORKSPACE=$(aerospace list-workspaces --focused)
+    FOCUSED_WORKSPACE=$(paneru query active --json | jq -r '.virtual_workspace_number')
 fi
 
-WINDOW_COUNT=$(aerospace list-windows --count --workspace "$1")
+WINDOW_COUNT=$(paneru query virtual-workspaces --json | jq --argjson n "$1" '[.[] | select(.number == $n) | .windows | length] | add // 0')
 
 if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
     sketchybar --set "$NAME" background.drawing=on label.color=0xffffffff

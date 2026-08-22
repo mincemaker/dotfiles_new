@@ -1,0 +1,96 @@
+# aerospace からの移行に伴い新規作成。既存の aerospace のキー配置には縛られず、
+# Linux 側で使っている niri のカラム/スクロール型タイリングの操作感を macOS へ
+# 移植する方針。Mod キーは alt（niri の Mod = Super の代わり）。
+#
+# 既知の制約:
+# - v0.4.4 には Lua スクリプティング (init.lua) が存在しない。TOML の固定アクション名
+#   にしかバインドできないため、`cmd-shift-m` = SketchyBar トグルのような任意シェル
+#   実行は別手段（Karabiner-Elements 等）で行う必要がある。
+# - close-window に相当するバインドはない。macOS 標準の cmd-w に依存する。
+
+[options]
+focus_follows_mouse = true
+mouse_follows_focus = true
+
+[decorations]
+# SketchyBar 側で同じ情報を表示するため、paneru 組込みのメニューバー表示は無効化。
+workspace_menu_status = false
+workspace_popup_status = true
+
+[padding]
+top = 8
+bottom = 8
+left = 8
+right = 8
+
+[windows.default]
+title = ".*"
+horizontal_padding = 8
+vertical_padding = 8
+
+[bindings]
+# --- フォーカス移動: niri の Mod+hjkl 相当 ---
+window_focus_west  = "alt - h"
+window_focus_south = "alt - j"
+window_focus_north = "alt - k"
+window_focus_east  = "alt - l"
+
+# --- ウィンドウ移動 (swap): niri の Mod+Ctrl+hjkl 相当 ---
+window_swap_west  = "alt + ctrl - h"
+window_swap_south = "alt + ctrl - j"
+window_swap_north = "alt + ctrl - k"
+window_swap_east  = "alt + ctrl - l"
+
+# --- 仮想ワークスペース切替: niri の Mod+1-9 相当 ---
+window_virtualnum_1 = "alt - 1"
+window_virtualnum_2 = "alt - 2"
+window_virtualnum_3 = "alt - 3"
+window_virtualnum_4 = "alt - 4"
+window_virtualnum_5 = "alt - 5"
+window_virtualnum_6 = "alt - 6"
+window_virtualnum_7 = "alt - 7"
+window_virtualnum_8 = "alt - 8"
+window_virtualnum_9 = "alt - 9"
+
+# --- ウィンドウを別ワークスペースへ送る（フォーカスは移動しない）:
+#     niri の Mod+Ctrl+1-9 相当 ---
+window_virtualsendnum_1 = "alt + ctrl - 1"
+window_virtualsendnum_2 = "alt + ctrl - 2"
+window_virtualsendnum_3 = "alt + ctrl - 3"
+window_virtualsendnum_4 = "alt + ctrl - 4"
+window_virtualsendnum_5 = "alt + ctrl - 5"
+window_virtualsendnum_6 = "alt + ctrl - 6"
+window_virtualsendnum_7 = "alt + ctrl - 7"
+window_virtualsendnum_8 = "alt + ctrl - 8"
+window_virtualsendnum_9 = "alt + ctrl - 9"
+
+# --- 前後のワークスペースへ切替: niri の Mod+U / Mod+I 相当 ---
+window_virtual_south = "alt - u"
+window_virtual_north = "alt - i"
+
+# --- 列幅サイクル: niri の Mod+R / Mod+Shift+R 相当 ---
+window_resize = "alt - r"
+window_shrink = "alt + shift - r"
+
+# --- レイアウト操作: niri の Mod+F / Mod+C 相当 ---
+window_fullwidth = "alt - f"
+window_center    = "alt - c"
+window_balance   = "alt + shift - c"
+window_equalize  = "alt - e"
+
+# --- スタック: niri の Mod+W（タブ表示）相当 ---
+window_stack   = "alt - w"
+window_unstack = "alt + shift - w"
+
+# --- フローティング切替: niri の Mod+V 相当 ---
+window_manage = "alt - v"
+
+# --- マルチディスプレイ ---
+window_nextdisplay     = "alt + shift - n"
+window_nextdisplaysend = "alt + shift + ctrl - n"
+mouse_nextdisplay       = "alt - n"
+
+# --- その他 ---
+quit    = "ctrl + alt - q"
+restart = "ctrl + alt + shift - q"
+

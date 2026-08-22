@@ -48,11 +48,11 @@ default=(
 )
 sketchybar --default "${default[@]}"
 
-##### Adding AeroSpace Workspace Indicators #####
+##### Adding paneru Workspace Indicators #####
 
-sketchybar --add event aerospace_workspace_change
+sketchybar --add event paneru_workspace_change
 
-SPACE_ICONS=("1" "2" "3" "4" "A" "S" "D" "F")
+SPACE_ICONS=("1" "2" "3" "4" "5" "6" "7" "8")
 for sid in "${SPACE_ICONS[@]}"
 do
   space=(
@@ -67,10 +67,10 @@ do
     background.height=26
     background.drawing=off
     script="$PLUGIN_DIR/space.sh $sid"
-    click_script="aerospace workspace $sid"
+    click_script="paneru send-cmd window virtualnum $sid"
   )
   sketchybar --add item space."$sid" left \
-             --subscribe space."$sid" aerospace_workspace_change \
+             --subscribe space."$sid" paneru_workspace_change \
              --set space."$sid" "${space[@]}"
 done
 
@@ -186,6 +186,8 @@ if [ "$HAS_MEDIA_CONTROL" -eq 1 ]; then
   "$PLUGIN_DIR/media_listener.sh" > /dev/null 2>&1 &
   "$PLUGIN_DIR/media_artwork_listener.sh" > /dev/null 2>&1 &
 fi
+
+"$PLUGIN_DIR/paneru_listener.sh" > /dev/null 2>&1 &
 
 ##### Force all scripts to run the first time (never do this in a script) #####
 sketchybar --update
