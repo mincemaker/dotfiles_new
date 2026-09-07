@@ -27,6 +27,7 @@ lazydocker = "latest"
 herdr = "latest"
 agy = "latest"
 mitmproxy = "latest"
+"pipx:linecast" = "latest"
 
 [settings.pipx]
 uvx = true
