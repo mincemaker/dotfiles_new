@@ -16,3 +16,25 @@
 - Clear Prompts: Provide explicit steps and concrete goals so subagents stay focused and do not get lost.
 - Open-ended Tasks: Do NOT delegate ambiguous or open-ended exploration to subagents. Keep open-ended tasks in the main context to closely track progress.
 - Parallelization: Launch subagents in parallel for independent, simple tasks.
+
+## Git & Commit Workflow
+- Commit as a deliberate user action: Committing triggers physical authentication (YubiKey on Linux, Secretive on macOS). Always present the staged diff and proposed commit message in chat, then wait for explicit user approval before committing.
+- Shell compatibility: Fish shell does not support heredoc; use `-m "..."` directly.
+
+## Debugging
+- Check immediate changes first: Inspect recent diffs and commits before exploring broader or remote hypotheses. Do not SSH into remote systems or assume infrastructure issues without explicit confirmation.
+
+## Execution & Workflow
+- Deliver working implementations: Prioritize minimal working code over exhaustive planning so sessions conclude with functional progress rather than stalled plans.
+
+## System & Infrastructure
+- Safe system changes: For NixOS and home-manager modifications, always verify builds and test on actual hardware. Exercise extreme caution with authentication, screen lock, and session management configurations to prevent lockouts.
+- Container runtime: Default to `podman` rather than `docker`.
+
+## Communication & Output Style
+- Minimal and clean formatting: Avoid decorative or excessive bold styling.
+- Natural phrasing: Do not use appositive parentheticals that restate preceding nouns. Express context naturally within the sentence flow.
+
+## Workspace Conventions
+- AI workspace: `z-ai/` is globally ignored and intended for local AI scratch files, plans, and tracking documents.
+- Browser inspection: When using `agent-browser`, include `--allow-private` for local addresses and use `--args "--no-sandbox"` if sandbox nesting is detected.
