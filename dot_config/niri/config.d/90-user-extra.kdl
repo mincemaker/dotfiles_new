@@ -145,6 +145,9 @@ binds {
     // Overview
     Mod+O repeat=false { toggle-overview; }
 
+    // Orbit（70-binds.kdl の Mod+Tab focus-workspace-previous を上書き）
+    Mod+Tab repeat=false { spawn "inir" "orbit" "toggle"; }
+
     // Preset column width (Mod+M, in addition to Mod+R)
     Mod+M { switch-preset-column-width; }
 
