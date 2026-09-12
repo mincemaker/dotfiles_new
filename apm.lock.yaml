@@ -1,11 +1,77 @@
 lockfile_version: '1'
-generated_at: '2026-05-05T03:52:04.913944+00:00'
-apm_version: 0.12.0
+generated_at: '2026-09-11T16:44:21.558473+00:00'
+apm_version: 0.30.0
 dependencies:
 - repo_url: _local/chezmoi-sync
+  name: chezmoi-sync
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/chezmoi-sync
+  - .agents/skills/chezmoi-sync/SKILL.md
+  - .agents/skills/chezmoi-sync/evals/evals.json
   - .claude/skills/chezmoi-sync
+  - .claude/skills/chezmoi-sync/SKILL.md
+  - .claude/skills/chezmoi-sync/evals/evals.json
+  deployed_file_hashes:
+    .agents/skills/chezmoi-sync/SKILL.md: sha256:f9b3f40fe894dbaae3893b86b34f35545db83ad9a7b6f3733a782bfbf7051c7b
+    .agents/skills/chezmoi-sync/evals/evals.json: sha256:1b26939997ca2028ccfd6b2a22f77e931ea5fb9a864d0a14b5410a5110e4147c
+    .claude/skills/chezmoi-sync/SKILL.md: sha256:f9b3f40fe894dbaae3893b86b34f35545db83ad9a7b6f3733a782bfbf7051c7b
+    .claude/skills/chezmoi-sync/evals/evals.json: sha256:1b26939997ca2028ccfd6b2a22f77e931ea5fb9a864d0a14b5410a5110e4147c
   source: local
   local_path: ./skills/chezmoi-sync
+deployments:
+- kind: project-relative
+  target: agent-skills
+  value: .agents/skills/chezmoi-sync
+  runtime: null
+  scope: project
+  owners:
+  - ./skills/chezmoi-sync
+  active_owner: ./skills/chezmoi-sync
+  content_hash: null
+- kind: project-relative
+  target: agent-skills
+  value: .agents/skills/chezmoi-sync/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ./skills/chezmoi-sync
+  active_owner: ./skills/chezmoi-sync
+  content_hash: sha256:f9b3f40fe894dbaae3893b86b34f35545db83ad9a7b6f3733a782bfbf7051c7b
+- kind: project-relative
+  target: agent-skills
+  value: .agents/skills/chezmoi-sync/evals/evals.json
+  runtime: null
+  scope: project
+  owners:
+  - ./skills/chezmoi-sync
+  active_owner: ./skills/chezmoi-sync
+  content_hash: sha256:1b26939997ca2028ccfd6b2a22f77e931ea5fb9a864d0a14b5410a5110e4147c
+- kind: project-relative
+  target: claude
+  value: .claude/skills/chezmoi-sync
+  runtime: null
+  scope: project
+  owners:
+  - ./skills/chezmoi-sync
+  active_owner: ./skills/chezmoi-sync
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/chezmoi-sync/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ./skills/chezmoi-sync
+  active_owner: ./skills/chezmoi-sync
+  content_hash: sha256:f9b3f40fe894dbaae3893b86b34f35545db83ad9a7b6f3733a782bfbf7051c7b
+- kind: project-relative
+  target: claude
+  value: .claude/skills/chezmoi-sync/evals/evals.json
+  runtime: null
+  scope: project
+  owners:
+  - ./skills/chezmoi-sync
+  active_owner: ./skills/chezmoi-sync
+  content_hash: sha256:1b26939997ca2028ccfd6b2a22f77e931ea5fb9a864d0a14b5410a5110e4147c
