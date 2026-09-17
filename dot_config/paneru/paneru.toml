@@ -115,6 +115,5 @@ window_nextdisplaysend = "alt + shift + ctrl - n"
 mouse_nextdisplay       = "alt - n"
 
 # --- その他 ---
-quit    = "ctrl + alt - q"
-restart = "ctrl + alt + shift - q"
+quit = "ctrl + alt - q"
 

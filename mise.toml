@@ -1,2 +1,10 @@
 [tools]
 chezmoi = "latest"
+
+[tasks.sketchybar-restart]
+description = "paneruとsketchybarを再起動する（`paneru restart`は野良LaunchAgentを作り二重起動するので使わない）"
+run = """
+launchctl kickstart -k gui/$(id -u)/org.nix-community.home.paneru
+sleep 2
+brew services restart sketchybar
+"""
