@@ -49,3 +49,15 @@ include "config.d/60-animations.kdl"
 include "config.d/70-binds.kdl"
 include "config.d/80-layer-rules.kdl"
 include "config.d/90-user-extra.kdl"
+
+output "DP-1" {
+    position x=1423 y=41
+}
+
+output "DP-2" {
+    position x=3440 y=0
+}
+
+output "HDMI-A-1" {
+    position x=5360 y=0
+}
