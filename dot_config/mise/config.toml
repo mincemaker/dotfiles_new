@@ -2,7 +2,7 @@
 fastfetch = "latest"
 node = "latest"
 "npm:@mizchi/readability" = "latest"
-python = "3.14"
+python = "3.15"
 yazi = "latest"
 "github:trasta298/keifu" = "latest"
 "github:k1Low/mo" = "latest"
@@ -28,6 +28,7 @@ herdr = "latest"
 agy = "latest"
 mitmproxy = "latest"
 "pipx:linecast" = "latest"
+codex = "latest"
 
 [settings.pipx]
 uvx = true
