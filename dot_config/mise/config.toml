@@ -19,6 +19,7 @@ ruby = "4.0.9"
 lazydocker = "latest"
 mitmproxy = "latest"
 "pipx:linecast" = "latest"
+"npm:ccusage" = "latest"
 
 [settings.pipx]
 uvx = true
