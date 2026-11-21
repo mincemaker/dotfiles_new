@@ -21,6 +21,7 @@ option global-context-path ~/.pi/agent/AGENTS.md
 option skill-path ~/.claude/skills
 option auto-lsp true
 option debug false
+option metrics false
 option ui diff unified
-option attribution-trailer-style assisted-by
-option attribution-generated-with true
+option attribution-trailer-style none
+option attribution-generated-with false
