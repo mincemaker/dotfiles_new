@@ -1,0 +1,26 @@
+mcp add context7 --type http \
+  --url "https://mcp.context7.com/mcp" \
+  --header CONTEXT7_API_KEY "$CONTEXT7_API_KEY"
+mcp add serena --command serena \
+  --args start-mcp-server --args --context=ide --args --enable-web-dashboard=false
+
+lsp add nix --command nil
+lsp add typescript --command typescript-language-server --args --stdio \
+  --root-markers tsconfig.json --root-markers package.json
+lsp add python --command pyright-langserver --args --stdio
+lsp add rust --command rust-analyzer
+lsp add go --command gopls
+lsp add ruby --command ruby-lsp
+
+hook add PreToolUse --command "$HOME/.config/crush/hooks/guard-and-guide.sh"
+hook add PreToolUse --matcher '^bash$' --command "$HOME/.config/crush/hooks/rtk-rewrite.sh"
+
+permissions allow view ls glob grep lsp_diagnostics lsp_references fetch agent
+
+option global-context-path ~/.pi/agent/AGENTS.md
+option skill-path ~/.claude/skills
+option auto-lsp true
+option debug false
+option ui diff unified
+option attribution-trailer-style assisted-by
+option attribution-generated-with true
