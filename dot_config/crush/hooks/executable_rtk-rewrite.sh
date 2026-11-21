@@ -51,7 +51,7 @@ case $EXIT_CODE in
     # Rewrite found. If identical, the command already uses rtk.
     [ "$CMD" = "$REWRITTEN" ] && exit 0
     jq -n --arg cmd "$REWRITTEN" \
-        '{decision: "allow", updated_input: ({command: $cmd} | tostring)}'
+        '{updated_input: {command: $cmd}}'
     ;;
 *)
     # No rewrite (1), deny (2), or unexpected — pass through.
