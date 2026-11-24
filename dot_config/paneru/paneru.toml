@@ -25,10 +25,7 @@ mouse_resize_modifier = "alt + shift"
 continuous = false
 
 [swipe.gesture]
-# トラックパッド 3本指スワイプ（横: ウィンドウ移動 / 縦: 仮想ワークスペース切替）
-fingers_count = 3
-direction = "Natural"
-vertical = true
+fingers_count = 0
 
 [swipe.scroll]
 # マウスホイール + 修飾キーでの横スクロール / ワークスペース切替
