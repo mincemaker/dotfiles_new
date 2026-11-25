@@ -17,12 +17,12 @@
                         ]
                     },
                     {
-                        "description": "Herdr: C-j を macSKK に届ける（かなキーに変換）",
+                        "description": "Herdr / Rex: C-j を macSKK に届ける（かなキーに変換）",
                         "manipulators": [
                             {
                                 "conditions": [
                                     {
-                                        "bundle_identifiers": ["^dev\\.herdr\\.app$"],
+                                        "bundle_identifiers": ["^dev\\.herdr\\.app$", "^com\\.superlogical\\.rex$"],
                                         "type": "frontmost_application_if"
                                     },
                                     {
